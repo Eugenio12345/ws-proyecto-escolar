@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE xml>
+<configuration debug="true">
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date{ISO8601} %X{transactionId} %-5level %logger{36} -
+				%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/opt/middleware/logs/menores/menores.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>/opt/middleware/logs/menores/menores.%i.log
+			</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>20</maxIndex>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>50MB</maxFileSize>
+		</triggeringPolicy>
+		<encoder>
+			<pattern>%date{ISO8601} %X{transactionId} %-5level %logger{36} -
+				%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE-ERROR"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/opt/middleware/logs/menores/error-menores.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>/opt/middleware/logs/menores/error-menores.%i.log
+			</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>20</maxIndex>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>20MB</maxFileSize>
+		</triggeringPolicy>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<encoder>
+			<pattern>%date{ISO8601} %X{transactionId} %-5level %logger{36} -
+				%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+		<appender-ref ref="FILE-ERROR" />
+	</root>
+</configuration>
