@@ -11,9 +11,10 @@ import hello.application.ws.model.Usuario;
 public class UsuarioServiceImpl implements UsuarioService{
 
 	private List<Usuario> listUsuarios;
+	boolean existe;
 	public UsuarioServiceImpl(){
 		this.listUsuarios = new ArrayList<>();
-		listUsuarios.add(new Usuario("admin", "admin"));
+		listUsuarios.add(new Usuario("admin", "admin", "admin", "administrador"));
 	}
 	@Override
 	public void crearUsuario(Usuario user) {
@@ -23,9 +24,14 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 	@Override
 	public boolean validarUsuario(Usuario user) {
-		return this.cargarUsuarios().contains(user);
+		
+		this.listUsuarios.stream().forEach(s->{
+			if(user.getContrasena().equals(s.getContrasena())&&user.getNombreUsuario().equals(s.getNombreUsuario())){
+			   existe = true;	
+			}
+		});
+		return existe;
 	}
-
 	@Override
 	public List<Usuario> cargarUsuarios() {
 		return this.listUsuarios;

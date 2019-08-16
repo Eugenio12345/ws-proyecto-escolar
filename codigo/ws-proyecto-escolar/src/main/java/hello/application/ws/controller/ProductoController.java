@@ -68,6 +68,14 @@ public class ProductoController {
 		return VISTA_FORMULARIO;
 	}
 	
+	
+	@GetMapping("/eliminar/{id}")
+	public String eliminar(@PathVariable(value="id") Integer idProducto) {
+		productoService.deleteProduct(idProducto);
+
+		return "redirect:../" + VISTA_LISTA;
+	}
+	
 	@PostMapping("/guardar")
 	public String guardar(Producto producto) {
 		if(producto.getId()==null){
@@ -75,15 +83,7 @@ public class ProductoController {
 			producto.setId(number.nextInt());
 		}
 		productoService.saveProduct(producto);
-		
 		return "redirect:" + VISTA_LISTA;
-	}
-	
-	@GetMapping("/eliminar/{id}")
-	public String eliminar(@PathVariable(value="id") Integer idProducto) {
-		productoService.deleteProduct(idProducto);
-
-		return "redirect:../" + VISTA_LISTA;
 	}
 	
 	
