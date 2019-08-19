@@ -1,5 +1,7 @@
 package hello.application.ws.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Producto {
 
 	
@@ -11,7 +13,23 @@ public class Producto {
 	
 	private Double precio;
 
+    private MultipartFile imagen;
 	
+    
+	/**
+	 * @return the imagen
+	 */
+	public MultipartFile getImagen() {
+		return imagen;
+	}
+
+	/**
+	 * @param imagen the imagen to set
+	 */
+	public void setImagen(MultipartFile imagen) {
+		this.imagen = imagen;
+	}
+
 	public Producto() {
 
 	}

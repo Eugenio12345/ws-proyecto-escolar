@@ -454,9 +454,29 @@ iframe {
   opacity: 1;
 }
 
+
+
 @media (max-width: 992px) {
   .alert-validate::before {
     visibility: visible;
     opacity: 1;
   }
+}
+
+nav {
+	background-color: rgb(191, 204, 75);
+	color: rgb(187, 38, 38);
+}
+
+
+.carru {
+	width: 400px;
+	height: 400px;
+}
+
+.borde {
+	width: 1300px;
+	height: 1300px;
+	padding: 10px;
+	position: relative;
 }

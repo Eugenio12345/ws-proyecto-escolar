@@ -1,7 +1,6 @@
 package hello.application.ws.controller;
 
 import java.util.Map;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +22,8 @@ public class ProductoController {
 
 	public static final String VISTA_LISTA = "lista";
 	public static final String VISTA_FORMULARIO = "formulario";
-	
+	public static final String VISTA_ACTUALIZAR = "updateProduct";
+	private Integer idProducto = 1;
 	@Value("${aplicacion.nombre}")
 	private String nombreAplicacion;
 
@@ -76,15 +76,20 @@ public class ProductoController {
 		return "redirect:../" + VISTA_LISTA;
 	}
 	
+	@GetMapping("/actualizar/{id}")
+	public String actualizar(@PathVariable(value="id") Integer idProducto, Map<String, Object> model) {
+		Producto producto = productoService.getById(idProducto);
+        model.put("producto", producto);
+		return VISTA_ACTUALIZAR;
+	}
+	
 	@PostMapping("/guardar")
 	public String guardar(Producto producto) {
-		if(producto.getId()==null){
-			Random number = new Random(100);
-			producto.setId(number.nextInt());
-		}
-		productoService.saveProduct(producto);
+		
+		productoService.saveOrUpdateProduct(producto);
 		return "redirect:" + VISTA_LISTA;
 	}
+	
 	
 	
 }

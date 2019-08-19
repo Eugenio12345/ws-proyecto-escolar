@@ -12,6 +12,7 @@ public class ProductoServiceImpl implements ProductoService {
 
 	private List<Producto> listProducts = null;
 
+	private Integer idProducto = 5;
 	public ProductoServiceImpl() {
 		listProducts = new ArrayList<>();
 		listProducts.add(new Producto(1, "9189189", "Mezcal de cafe", 150.1));
@@ -29,8 +30,23 @@ public class ProductoServiceImpl implements ProductoService {
 	}
 
 	@Override
-	public void saveProduct(Producto producto) {
-		this.listProducts.add(producto);
+	public void saveOrUpdateProduct(Producto producto) {
+		/**
+		 * Entra a este metodo cuando el producto se registra por primera vez
+		 */
+		if(producto.getId()==null){
+			producto.setId(idProducto++);
+			this.listProducts.add(producto);
+		}
+		
+		/**
+		 * En caso contrario el producto solo actualiza sus propiedades
+		 */
+		this.listProducts.stream().filter(s -> s.getId().equals(producto.getId())).forEach(s -> {
+            s.setCodigo(producto.getCodigo());
+            s.setNombre(producto.getNombre());
+            s.setPrecio(producto.getPrecio());
+		});
 	}
 
 	@Override
@@ -49,5 +65,7 @@ public class ProductoServiceImpl implements ProductoService {
 		});
 		return producto;
 	}
+
+
 
 }

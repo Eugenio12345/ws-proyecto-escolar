@@ -2,14 +2,27 @@ package hello.application.ws.model;
 
 public class Usuario {
 
-	
+	private Integer idUsuario;
 	private String nombreUsuario;
 	private String contrasena;
 	private String confirmPassword;
 	private String rol;
 	
 	
-	
+	/**
+	 * @return the idUsuario
+	 */
+	public Integer getIdUsuario() {
+		return idUsuario;
+	}
+
+	/**
+	 * @param idUsuario the idUsuario to set
+	 */
+	public void setIdUsuario(Integer idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
 	/**
 	 * @return the rol
 	 */
@@ -67,17 +80,19 @@ public class Usuario {
 	}
 
 	/**
+	 * @param idUsuario
 	 * @param nombreUsuario
 	 * @param contrasena
 	 * @param confirmPassword
 	 * @param rol
 	 */
-	public Usuario(String nombreUsuario, String contrasena, String confirmPassword, String rol) {
+	public Usuario(Integer idUsuario, String nombreUsuario, String contrasena, String confirmPassword, String rol) {
 		super();
+		this.idUsuario = idUsuario;
 		this.nombreUsuario = nombreUsuario;
 		this.contrasena = contrasena;
 		this.confirmPassword = confirmPassword;
 		this.rol = rol;
 	}
-	
+
 }

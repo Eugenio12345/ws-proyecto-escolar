@@ -9,10 +9,10 @@
 	<div class="container">
 		<div class="card bg-dark">
 			<div class="card-header">
-				<h3>Nuevo producto</h3>
+				<h3>Actualizar producto</h3>
 			</div>
 			<div class="card-body">
-				<form th:action="@{guardar}" th:object="${producto}" method="post">
+				<form th:action="@{/productos/guardar}" th:object="${producto}" method="post">
 					<!-- <input type="hidden" th:field="${producto.id}"> -->
 					<input type="hidden" th:field="*{id}" />
 		
@@ -20,7 +20,7 @@
 						<label class="col-sm-2 col-form-label">Código</label>
 						<div class="col-sm-6">
 							<!-- <input type="text" th:field="${producto.nombre}"> -->
-							<input type="text" th:field="*{nombre}">
+							<input type="text" th:field="*{nombre}" >
 						</div>
 					</div>
 					<div class="form-group row">
@@ -39,8 +39,8 @@
 					</div>
 					<div class="form-group">
 						<div class="col-sm-6">
-							<input type="submit" value="Añadir producto" class="btn btn-outline-primary">
-							<a th:href="@{lista}" class="btn btn-outline-danger">Cancelar</a>
+							<input type="submit" value="Actualizar Producto" class="btn btn-outline-primary">
+							<a th:href="@{/productos/lista}" class="btn btn-outline-danger">Cancelar</a>
 						</div>
 					</div>
 				</form>
