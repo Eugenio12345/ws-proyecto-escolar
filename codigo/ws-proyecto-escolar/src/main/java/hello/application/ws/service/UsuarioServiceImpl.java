@@ -28,13 +28,12 @@ public class UsuarioServiceImpl implements UsuarioService{
 			listUsuarios.add(usuario);
 		}
 		
-		this.listUsuarios.parallelStream().filter(s->s.getIdUsuario().equals(usuario)).map(s->{
+		this.listUsuarios.parallelStream().filter(s->s.getIdUsuario().equals(usuario.getIdUsuario())).forEach(s->{
 			s.setIdUsuario(usuario.getIdUsuario());
 			s.setConfirmPassword(usuario.getConfirmPassword());
 			s.setContrasena(usuario.getContrasena());
 			s.setNombreUsuario(usuario.getNombreUsuario());
 			s.setRol(usuario.getRol());
-			return s;
 		});
 		
 	}
@@ -63,13 +62,12 @@ public class UsuarioServiceImpl implements UsuarioService{
 	@Override
 	public Usuario obtenerPorId(Integer id) {
 		Usuario usuario = new Usuario ();
-		this.listUsuarios.parallelStream().filter(s->s.getIdUsuario().equals(usuario)).map(s->{
+		this.listUsuarios.parallelStream().filter(s->s.getIdUsuario().equals(id)).forEach(s->{
 			usuario.setIdUsuario(s.getIdUsuario());
 			usuario.setConfirmPassword(s.getConfirmPassword());
 			usuario.setContrasena(s.getContrasena());
 			usuario.setNombreUsuario(s.getNombreUsuario());
 			usuario.setRol(s.getRol());
-			return usuario;
 		});
 		return usuario;
 	}

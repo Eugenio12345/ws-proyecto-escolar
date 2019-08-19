@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headUser">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -38,39 +37,18 @@ body {
 </head>
 
 <body>
-	<img src="" alt="" srcset="">
-	<header>
-		<div class="container">
-			<div class="row"></div>
-			<div class="col-sm-4 offset-md-1 py-4">
-				<h4 class="text-blue">Contacto</h4>
-				<ul class="list-unstyled">
-					<li><a href="#" class="text-black">Twitter</a></li>
-					<li><a href="#" class="text-black">Facebook</a></li>
-					<li><a href="#" class="text-black">Email</a></li>
-				</ul>
-			</div>
-		</div>
-		</div>
-		</div>
-
-		</div>
-	</header>
+	<header th:replace="layout/layoutUser::headerUser"></header>
 	<main role="main">
-	<section class="jumbotron text-center">
 		<div class="container">
 			<h1 class="jumbotron-heading">Fotos</h1>
-			<p class="lead text-muted">A continuaciÃ³n aparece el mapa de
+			<p class="lead text-muted">A continuacion aparece el mapa de
 				como llegar a este hermoso pueblo, Y algunos de los lugares
 				turisticos que puedes visitar con tu familia y asi poder pasar un
 				dia en grande, acompaÃ±ado de un mezcal calientito.</p>
 			<p>
-
-				<a href="#" class="btn btn-secondary my-2 color">Mapa de
-					Ubicacion</a>
+				<a th:href="@{/clientes/ubicacionFrame}" class="btn btn-secondary my-2 color">Mapa de Ubicacion</a>
 			</p>
 		</div>
-	</section>
 	<div class="album py-5 bg-light">
 		<div class="container">
 			<div class="row">

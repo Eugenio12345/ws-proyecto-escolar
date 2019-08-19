@@ -100,10 +100,15 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/crearCuenta")
-	public String crearCuenta(Usuario usuario, Model model) {
+	public String crearCuenta(Usuario usuario, Map<String, Object>  model) {
 		System.out.println("GUARDANDO DATOS::::");
+		if(usuario.getIdUsuario()!=null){
+			usuarioService.crearActualizarUsuario(usuario);
+			model.put("usuarios", usuarioService.cargarUsuarios());
+			return VISTA_LISTA_USUARIOS;
+		}
 		if (!usuario.getContrasena().equals(usuario.getConfirmPassword())) {
-			model.addAttribute("mensajeError", mensajeError);
+			model.put("mensajeError", mensajeError);
 			return CREATE_ACCOUNT;
 		}
 		usuarioService.crearActualizarUsuario(usuario);
@@ -113,6 +118,7 @@ public class UsuarioController {
 	@GetMapping("/usuarios/actualizar/{id}")
 	public String actualizar(@PathVariable(value = "id") Integer idUsuario,  Map<String, Object> model) {
 		Usuario usuario = usuarioService.obtenerPorId(idUsuario);
+	    System.out.println("NOMBRE "+usuario.getNombreUsuario());
 		model.put("usuario", usuario);
 		return VISTA_ACTUALIZAR_USUARIOS;
 	}
@@ -123,10 +129,31 @@ public class UsuarioController {
 		return "redirect:../" + VISTA_LISTA;
 	}
 	
-	@GetMapping("usuarios/historiaPueblo")
+	@GetMapping("/clientes/historiaPueblo")
 	public String historiaPueblo(Model model) {
 		model.addAttribute("nombreAplicacion", nombreAplicacion);
 		model.addAttribute("productos", productoService.getAll());
 		return "historiaPueblo";
+	}
+	
+	@GetMapping("/clientes/productos")
+	public String productos(Model model) {
+		model.addAttribute("nombreAplicacion", nombreAplicacion);
+		model.addAttribute("productos", productoService.getAll());
+		return "productosMezcal";
+	}
+	
+	@GetMapping("/clientes/ubicacionMapa")
+	public String ubicacionMapa(Model model) {
+		model.addAttribute("nombreAplicacion", nombreAplicacion);
+		model.addAttribute("productos", productoService.getAll());
+		return "ubicacionMapa";
+	}
+	
+	@GetMapping("/clientes/ubicacionFrame")
+	public String ubicacionFrame(Model model) {
+		model.addAttribute("nombreAplicacion", nombreAplicacion);
+		model.addAttribute("productos", productoService.getAll());
+		return "ubicacionFrame";
 	}
 }

@@ -15,6 +15,8 @@ public class Producto {
 
     private MultipartFile imagen;
 	
+    private String rutaImagen;
+    
     
 	/**
 	 * @return the imagen
@@ -78,6 +80,20 @@ public class Producto {
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.precio = precio;
+	}
+
+	/**
+	 * @return the rutaImagen
+	 */
+	public String getRutaImagen() {
+		return rutaImagen;
+	}
+
+	/**
+	 * @param rutaImagen the rutaImagen to set
+	 */
+	public void setRutaImagen(String rutaImagen) {
+		this.rutaImagen = rutaImagen;
 	}
 
 }

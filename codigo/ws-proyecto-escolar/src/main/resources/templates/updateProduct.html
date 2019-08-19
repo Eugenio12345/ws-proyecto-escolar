@@ -37,6 +37,13 @@
 							<input type="text" th:field="*{precio}">
 						</div>
 					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Imagen</label>
+						<div class="col-sm-6">
+							<!-- <input type="text" th:field="${producto.precio}"> -->
+							<input type="file"  th:field="*{imagen}">
+						</div>
+					</div>
 					<div class="form-group">
 						<div class="col-sm-6">
 							<input type="submit" value="Actualizar Producto" class="btn btn-outline-primary">
