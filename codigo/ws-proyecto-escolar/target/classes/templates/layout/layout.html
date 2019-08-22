@@ -28,9 +28,8 @@
 		        <a class="nav-link" th:href="@{/usuarios/lista}">Usuarios</a>
 		      </li>
 		    </ul>
-		    <form class="form-inline my-2 my-lg-0">
-		      <input class="form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search">
-		      <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Buscar</button>
+		    <form class="form-inline my-2 my-lg-0" th:action="@{/}">
+		      <button th:ref ="@{/clientes/login}" class="btn btn-outline-warning my-2 my-sm-0" type="submit">Cerrar Sesion</button>
 		    </form>
 		  </div>
 		</nav>
