@@ -23,7 +23,7 @@ public class ProductoController {
 	public static final String VISTA_LISTA = "lista";
 	public static final String VISTA_FORMULARIO = "formulario";
 	public static final String VISTA_ACTUALIZAR = "updateProduct";
-	private Integer idProducto = 1;
+	
 	@Value("${aplicacion.nombre}")
 	private String nombreAplicacion;
 
@@ -38,7 +38,10 @@ public class ProductoController {
 	public String listar(Model model) {
 		model.addAttribute("titulo", nombreAplicacion);
 		model.addAttribute("productos", productoService.getAll());
-
+        System.out.println("Lista de datos::::");
+        productoService.getAll().forEach(s->{
+        	System.out.println("CODIGO "+s.getCodigo()+" NOMBRE "+s.getNombre());
+        });
 		return VISTA_LISTA;
 	}
 	
@@ -89,7 +92,5 @@ public class ProductoController {
 		productoService.saveOrUpdateProduct(producto);
 		return "redirect:" + VISTA_LISTA;
 	}
-	
-	
 	
 }

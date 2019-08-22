@@ -25,7 +25,6 @@ public class UsuarioController {
 	public static final String CREATE_ACCOUNT = "createAccount";
 	public static final String VISTA_PRINCIPAL = "main";
 	public static final String VISTA_ACTUALIZAR_USUARIOS = "updateUser";
-	private Integer idUsuario = 1;
 
 	private UsuarioService usuarioService;
 
@@ -80,8 +79,9 @@ public class UsuarioController {
 	public String validar(Usuario usuario, Model model) {
 		model.addAttribute("titulo", nombreAplicacion);
 		model.addAttribute("productos", productoService.getAll());
-		if (usuarioService.validarUsuario(usuario)) {
-			if (usuario.getRol().equals("administrador")) {
+		Usuario user = usuarioService.obtenerPorNombreYPass(usuario);
+		if (user!=null) {
+			if (user.getRol().equals("administrador")) {
 			   return VISTA_LISTA;
 			}
 			return VISTA_PRINCIPAL;
@@ -101,7 +101,9 @@ public class UsuarioController {
 
 	@PostMapping("/crearCuenta")
 	public String crearCuenta(Usuario usuario, Map<String, Object>  model) {
+		
 		System.out.println("GUARDANDO DATOS::::");
+		usuario.setRol(usuario.getRol() != null ? usuario.getRol() : "usuario");
 		if(usuario.getIdUsuario()!=null){
 			usuarioService.crearActualizarUsuario(usuario);
 			model.put("usuarios", usuarioService.cargarUsuarios());
@@ -155,5 +157,12 @@ public class UsuarioController {
 		model.addAttribute("nombreAplicacion", nombreAplicacion);
 		model.addAttribute("productos", productoService.getAll());
 		return "ubicacionFrame";
+	}
+    
+	@GetMapping("/clientes/main")
+	public String main(Model model) {
+		model.addAttribute("nombreAplicacion", nombreAplicacion);
+		model.addAttribute("productos", productoService.getAll());
+		return "main";
 	}
 }

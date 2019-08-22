@@ -1,11 +1,17 @@
-package hello.application.ws.model;
+package hello.application.ws.dto;
 
-import org.springframework.web.multipart.MultipartFile;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Table(name = "Producto")
+@Entity
+public class ProductoDto {
 
-public class Producto {
-
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)	
 	private Integer id;
 	
 	private String codigo;
@@ -14,26 +20,11 @@ public class Producto {
 	
 	private Double precio;
 
-    private MultipartFile imagen;
 	
     private String rutaImagen;
     
     
-	/**
-	 * @return the imagen
-	 */
-	public MultipartFile getImagen() {
-		return imagen;
-	}
-
-	/**
-	 * @param imagen the imagen to set
-	 */
-	public void setImagen(MultipartFile imagen) {
-		this.imagen = imagen;
-	}
-
-	public Producto() {
+	public ProductoDto() {
 
 	}
 
@@ -75,7 +66,7 @@ public class Producto {
 	 * @param nombre
 	 * @param precio
 	 */
-	public Producto(Integer id, String codigo, String nombre, Double precio) {
+	public ProductoDto(Integer id, String codigo, String nombre, Double precio) {
 		super();
 		this.id = id;
 		this.codigo = codigo;

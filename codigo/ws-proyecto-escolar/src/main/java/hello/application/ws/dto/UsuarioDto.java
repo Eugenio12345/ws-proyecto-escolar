@@ -1,11 +1,20 @@
-package hello.application.ws.model;
+package hello.application.ws.dto;
 
-public class Usuario {
-	
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Table(name = "Usuario")
+@Entity
+public class UsuarioDto {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Integer idUsuario;
 	private String nombreUsuario;
 	private String contrasena;
-	private String confirmPassword;
 	private String rol;
 	
 	
@@ -67,17 +76,10 @@ public class Usuario {
 
 	
 
-	public Usuario(){
+	public UsuarioDto(){
 		
 	}
 
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
 
 	/**
 	 * @param idUsuario
@@ -86,12 +88,11 @@ public class Usuario {
 	 * @param confirmPassword
 	 * @param rol
 	 */
-	public Usuario(Integer idUsuario, String nombreUsuario, String contrasena, String confirmPassword, String rol) {
+	public UsuarioDto(Integer idUsuario, String nombreUsuario, String contrasena, String rol) {
 		super();
 		this.idUsuario = idUsuario;
 		this.nombreUsuario = nombreUsuario;
 		this.contrasena = contrasena;
-		this.confirmPassword = confirmPassword;
 		this.rol = rol;
 	}
 

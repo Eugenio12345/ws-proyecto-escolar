@@ -11,4 +11,5 @@ public interface UsuarioService {
 	boolean validarUsuario(Usuario usuario);
 	void eliminarUsuario(Integer id);
 	Usuario obtenerPorId(Integer id);
+	Usuario obtenerPorNombreYPass(Usuario user);
 }
